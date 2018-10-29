@@ -1,48 +1,31 @@
-<mat-checkbox>subscribeto</mat-checkbox>
-
 <form [formGroup]="filterForm" class='filter-form'>
  
-      <div class='filter-dropdown' *ngIf='filterData.length'>
-          <div class='filter-row'>
-                <div class='column-container plant-container' *ngFor='let formarray of filterData let ind=index'> <span class='column-lable'>{{formarray.value[0].name}}</span>
-                    <div class='filter-column' [formGroupName]="formarray.name">
-                        <mat-checkbox class="mat_checkbox" #changePlant [id]="formarray.name" (change)=changePlantAll($event,formarray.name) >All</mat-checkbox>
-                        <div *ngFor='let plant of filterForm.controls[formarray.name].controls let i=index'>
-                                <mat-checkbox class= "mat_checkbox"  [disabled]="changePlant.checked"  [checked]="plant.value.checked"  (change)="changeId($event,plant.value,i)">{{plant.value.data.id}}</mat-checkbox>
-                        </div>
-                    </div>
-                </div>
-              <!-- <div class='column-container plant-container' formGroupName="plant"> 
-                <span class='column-lable'>Plant</span>
-                  <div class='filter-column'>
-                      <mat-checkbox class= "mat_checkbox" #changePlant (change)=changePlantAll($event)>All</mat-checkbox>
-                      <div *ngFor='let plant of plant.controls let i=index'>
-                          <mat-checkbox class= "mat_checkbox" [disabled]="changePlant.checked" [checked]="plant.value.checked"  (change)="changeId($event,plant.value,i)">{{plant.value.data.id}}</mat-checkbox>
+    <div class='filter-dropdown' *ngIf='filterData.length'>
+        <div class='filter-row'>
+              <div class='column-container plant-container' *ngFor='let formarray of filterData let ind=index'> 
+                  <b class='column-lable'>{{formarray.name}}</b>
+                  <div class='filter-column' [formGroupName]="formarray.name">
+                          <mat-checkbox class="mat_checkbox" #changePlant [checked]=' filterForm.controls.checkboxAll.controls[ind].value.checked' [id]="formarray.name" (change)=changePlantAll($event,formarray.name,ind) >All</mat-checkbox>
+                      
+                      <div *ngFor='let plant of filterForm.controls[formarray.name].controls let i=index'>
+                              <mat-checkbox class= "mat_checkbox" [disabled]="changePlant.checked"  [checked]="plant.value.checked"  (change)="changeId($event,plant.value,i)">{{plant.value.data.id}}</mat-checkbox>
                       </div>
                   </div>
+                  <hr>
               </div>
+            
 
-              <div class='column-container plant-container' formGroupName="paver"> 
-                <span class='column-lable'>Paver</span>
-                <div class='filter-column'>
-                    <mat-checkbox class= "mat_checkbox" #changePaver (change)=changePaverAll($event)>All</mat-checkbox>
-                    <div *ngFor='let paver of paver.controls let i=index'>
-                        <mat-checkbox class= "mat_checkbox" [disabled]="changePaver.checked" [checked]="paver.value.checked"  (change)="changeId($event,paver.value,i)">{{paver.value.data.id}}</mat-checkbox>
-                    </div>
-                </div>
-            </div> -->
-
-          </div>
-      </div>
-      <div class='no-data' *ngIf='!filterData.length'>
-          <div class=' spinner icon-ic_n_others_loading' *ngIf='displayLoader'></div>
-          <div *ngIf='!displayLoader&&!filterData.length' class='no-content'>Data NOT available to Filter</div>
-      </div>
-      <div class='footer' *ngIf='filterData.length'> 
-          <button  mat-raised-button
-          color="accent" class='buttons reset' (click)='resetFilter()'> RESET
-          </button> 
-          <button  mat-raised-button
-          color="accent" class='buttons apply' (click)='submitFilter(filterForm) '>APPLY</button> 
         </div>
+    </div>
+    <div class='no-data' *ngIf='!filterData.length'>
+        <div class=' spinner icon-ic_n_others_loading' *ngIf='displayLoader'></div>
+        <div *ngIf='!displayLoader&&!filterData.length' class='no-content'>Data NOT available to Filter</div>
+    </div>
+    <div class='footer' *ngIf='filterData.length'> 
+        <button  mat-raised-button
+        color="accent" class='buttons reset' (click)='resetFilter()'> RESET
+        </button> 
+        <button  mat-raised-button
+        color="accent" class='buttons apply' (click)='submitFilter(filterForm) '>APPLY</button> 
+      </div>
 </form>
