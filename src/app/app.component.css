@@ -1,0 +1,14 @@
+table {
+    width: 100%;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+  
+
+  main {
+    width: 80%;
+    margin: 1rem auto;
+  }
+  

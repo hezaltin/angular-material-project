@@ -1,0 +1,16 @@
+
+ <mat-card *ngFor="let book of books|async">
+    <mat-card-title-group>
+      <a href="book.volumeInfo.previewLink" terget="_blank">
+      <img mat-card-sm-image  src="{{book.volumeInfo.imageLinks.thumbnail}}"/>
+      </a>
+      <mat-card-title>{{ title }}</mat-card-title>
+      <mat-card-subtitle *ngIf="book.volumeInfo.subtitle">{{ book.volumeInfo.subtitle}}</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      <p *ngIf="book.volumeInfo.description">{{ book.volumeInfo.description }}</p>
+    </mat-card-content>
+    <mat-card-footer> 
+
+    </mat-card-footer>
+  </mat-card>

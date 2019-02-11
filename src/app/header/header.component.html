@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <span><a routerLink="/">MyMessages</a></span>
+  <span class="spacer"></span>
+  <ul>
+    
+      <li *ngIf="!isSearchOn">
+          <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+      </li>
+      <li *ngIf="!isSearchOn">
+          <a mat-button routerLink="/signup" routerLinkActive="mat-accent">SignUp</a>
+      </li>
+      <li *ngIf="isSearchOn">
+          <a mat-button routerLink="/login" routerLinkActive="mat-accent">LogOut</a>
+      </li>
+  </ul>
+  <div [formGroup]="searchForm" class="search-bar" *ngIf="isSearchOn">
+      <button mat-icon-button>
+        <mat-icon aria-label="Search database">search</mat-icon>
+      </button>
+      <mat-form-field class="search-box" appearance="legacy" floatLabel="never">
+        <input #input matInput placeholder="Search in knowledge graph" autocomplete="off" formControlName="searchInput">
+      </mat-form-field>
+      <button mat-icon-button (click)="closeSearchBar()">
+        <mat-icon aria-label="Cancel search">close</mat-icon>
+      </button>
+    </div>
+
+</mat-toolbar>
