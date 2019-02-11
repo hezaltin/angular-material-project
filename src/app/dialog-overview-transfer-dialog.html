@@ -1,0 +1,115 @@
+   
+    <h1 mat-dialog-title>District Office Transfer</h1>
+    <div mat-dialog-content>
+          <div class="" *ngIf="noDo">
+            <p style="color: red;">This Case is not assigned to any District Office</p>
+            <div class="">
+              District Office
+              <span style="color:red;">*</span>
+              <mat-select class="form-control" [(ngModel)]="selectedDO" id="insideDo1">
+                <mat-option value="">Select</mat-option>
+                <mat-option *ngFor="let do of this.districtOfficeList | orderBy : 'doCd'" value="{{do.doCd}}">{{do.doCd + ' ' + do.doName}}</mat-option>
+              </mat-select>
+            </div>
+
+            <div class="">
+              <mat-label>Assign Worker: </mat-label>
+              <input id="assignWorker" ng2-auto-complete [source]="workersLists" [list-formatter]="autocompleListFormatter" value-property-name="uniqueId"
+                display-property-name="fullName" [(ngModel)]="assignedTo" placeholder="Select One Case Worker" class="form-control field-label-value"
+              />
+            </div>
+
+          </div>
+          <div *ngIf="!noDo">
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6">
+                <h4 style="color: blue;">Current District Office</h4>
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="row">
+              <div class="col-md-3">Name:</div>
+              <div class="col-md-9">{{currentDo.doName}}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">Address:</div>
+              <div class="col-md-9">{{currentDo.doAdrLine1 + ', ' + currentDo.doCity + ', ' + currentDo.doZipCode}}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">Created By:</div>
+              <div class="col-md-9">{{currentDo.createFirstName + ' ' + currentDo.createLastName}}</div>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="row" *ngIf="historyDo.length > 0">
+              <div class="col-md-3"></div>
+              <div class="col-md-6">
+                <h4 style="color: blue;"> Previous District Office(s)</h4>
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="row" *ngIf="historyDo.length > 0">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <td>DO Code</td>
+                    <td>DO Name</td>
+                    <td>Created Date</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let do of historyDo" [hidden]="!(do.doCd)">
+                    <td>{{do.doCd}}</td>
+                    <td>{{do.doName}}</td>
+                    <td>{{(do.beginDt)?do.beginDt.split(' ')[0]:null}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <mat-label>District Office: </mat-label>
+              <span style="color:red;">*</span>
+              <input ng2-auto-complete [source]="districtOfficeList" [list-formatter]="districtOfficeListFormatter" value-property-name="doCd"
+                display-property-name="codeAndName" [(ngModel)]="selectedDO" placeholder="Select One Case Worker" class="form-control field-label-value"
+              />
+              <p *ngIf="noDos" style="color:red; font-size: small;">Please select a valid District Office</p>
+              <!-- <select class="form-control" [(ngModel)]="selectedDO" id="insideDo">
+                <option value="">Select</option>
+                <option *ngFor="let do of this.districtOfficeList" value="{{do.doCd}}">{{do.doCd + ' ' + do.doName}}</option>
+              </select> -->
+            </div>
+            <div class="row">
+              <div  class="col-md-9">
+                <mat-form-field class="fullWidth">
+                  <mat-label>Assign Worker: </mat-label>
+              <input matInput ng2-auto-complete [source]="workersLists" [list-formatter]="autocompleListFormatter" value-property-name="uniqueId"
+                display-property-name="fullName" [(ngModel)]="assignedTo" placeholder="Select One Case Worker" class="form-control field-label-value"
+              />
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- <div class="row">
+              <mat-label>Assign Worker: </mat-label>
+              <input ng2-auto-complete [source]="workersLists" [list-formatter]="autocompleListFormatter" value-property-name="uniqueId"
+                display-property-name="fullName" [(ngModel)]="assignedTo" placeholder="Select One Case Worker" class="form-control field-label-value"
+              />
+            </div> -->
+
+          </div>
+    </div>    
+
+    
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" id="cancelId" type="button" class="btn btn-default last-modal-btn" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span>&nbsp;Cancel
+          </button>
+          <button  mat-raised-button color="accent" id="closeId" type="button" class="btn btn-success last-modal-btn" [disabled]="!selectedDO" (click)="assignDO()">
+            <span class="glyphicon glyphicon-check"></span>&nbsp;Assign
+          </button>
+    </div>    
+           
+
+       
+
