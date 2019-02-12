@@ -12,17 +12,16 @@
       <li *ngIf="isSearchOn">
           <a mat-button routerLink="/login" routerLinkActive="mat-accent">LogOut</a>
       </li>
+      <li *ngIf="isSearchOn">
+        <a mat-button routerLink="/search" routerLinkActive="mat-accent">Search Books</a>
+    </li>
+      <li *ngIf="isSearchOn">
+        <a mat-button routerLink="/userlist" routerLinkActive="mat-accent">User List</a>
+      </li>
+      <li *ngIf="isSearchOn">
+        <a mat-button routerLink="/mybooklist" routerLinkActive="mat-accent">My Book List</a>
+      </li>
   </ul>
-  <div [formGroup]="searchForm" class="search-bar" *ngIf="isSearchOn">
-      <button mat-icon-button>
-        <mat-icon aria-label="Search database">search</mat-icon>
-      </button>
-      <mat-form-field class="search-box" appearance="legacy" floatLabel="never">
-        <input #input matInput placeholder="Search in knowledge graph" autocomplete="off" formControlName="searchInput">
-      </mat-form-field>
-      <button mat-icon-button (click)="closeSearchBar()">
-        <mat-icon aria-label="Cancel search">close</mat-icon>
-      </button>
-    </div>
+  
 
 </mat-toolbar>

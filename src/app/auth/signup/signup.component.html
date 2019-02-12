@@ -9,7 +9,8 @@
             name="name"
             formControlName="name"
            >
-          <mat-error *ngIf="signUpForm.controls.name.invalid">Please enter a valid email</mat-error>
+          <mat-error *ngIf="signUpForm.controls.name.errors?.required">Please enter a valid name</mat-error>
+          <mat-error *ngIf="signUpForm.controls.name.errors?.name">User name already exixts</mat-error>
         </mat-form-field>
     <mat-form-field>
       <input
@@ -19,7 +20,8 @@
         name="email"
         formControlName="email"
        >
-      <mat-error *ngIf="signUpForm.controls.email.invalid">Please enter a valid email</mat-error>
+      <mat-error *ngIf="signUpForm.controls.email.errors?.required">Please enter a valid email</mat-error>
+      <mat-error *ngIf="signUpForm.controls.email.errors?.email">Email already exixts</mat-error>
     </mat-form-field>
     
     <mat-form-field>
@@ -35,6 +37,7 @@
     <button
       mat-raised-button
       color="primary"
+      [disabled]="signUpForm.invalid"
       type="submit">Register</button>
   </form>
 </mat-card>

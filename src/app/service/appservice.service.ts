@@ -8,7 +8,8 @@ import { map } from 'rxjs/operators';
 })
 export class AppserviceService {
   private _isSearchAvailable: BehaviorSubject<any> = new BehaviorSubject(false);
-  private _searchBooks: BehaviorSubject<any> = new BehaviorSubject([])
+  private _searchBooks: BehaviorSubject<any> = new BehaviorSubject([]);
+  private _userList:BehaviorSubject<any> = new BehaviorSubject([]);
   constructor(private http:HttpClient) {
 
    }
@@ -16,6 +17,9 @@ export class AppserviceService {
    setSeatchOn(state){
      this._isSearchAvailable.next(state);
    }
+   setSearchUserList(state){
+    this._userList.next(state);
+  }
 
    getSearchBooks(search):Observable<any>{
      console.log(search)
@@ -35,6 +39,10 @@ export class AppserviceService {
 
     get searchBooks(){
       return this._searchBooks.asObservable();
+    }
+
+    get userList(){
+      return this._userList.asObservable();
     }
 
 
