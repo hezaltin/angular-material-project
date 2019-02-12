@@ -11,6 +11,8 @@ import { HeaderComponent } from "./header/header.component";
 import {LoginComponent} from './auth/login/login.component';
 import {SignupComponent} from './auth/signup/signup.component';
 import {SearchComponent} from './books/search/search.component';
+import { UserListComponent } from './books/user-list/user-list.component';
+import { MyBookListComponent } from './books/my-book-list/my-book-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {SearchComponent} from './books/search/search.component';
     HeaderComponent,
     LoginComponent,
     SignupComponent,
-    SearchComponent
+    SearchComponent,
+    UserListComponent,
+    MyBookListComponent
     
     
   ],

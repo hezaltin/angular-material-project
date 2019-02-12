@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AppserviceService} from '../service/appservice.service'
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,38 +12,21 @@ import { debounceTime } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
   private isSearchOn:boolean
   private searchForm:FormGroup
-  constructor(private appService:AppserviceService,private fb:FormBuilder) { }
+  constructor(private appService:AppserviceService,private router:Router) { }
   
   ngOnInit() {
+    this.router.navigate(['/'])
       this.appService.isSearchAvailable.subscribe(search=>{
         console.log(search)
         this.isSearchOn = search;
       });
 
-      this.searchForm = this.fb.group({
-        searchInput:['']
-      });
-      this.searchInputValueChanges.subscribe(value=>{
-        console.log(value);
-      this.appService.getSearchBooks(value).subscribe(search=>this.appService.setSearchBooks(search.items));
-
-      });
+ 
 
       
 
   }
 
-  get searchInputControl(){
-    return this.searchForm.get('searchInput');
-}
-
-get searchInputValueChanges(){
-  return this.searchInputControl.valueChanges.pipe(debounceTime(100));
-}
-
-closeSearchBar() {
- 
-}
 
 
 }

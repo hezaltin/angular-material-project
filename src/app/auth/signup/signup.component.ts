@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CustoumValidators } from './sign-up.component.config';
 
 @Component({
   selector: 'app-signup',
@@ -14,8 +15,8 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
 
     this.signUpForm = this.fb.group({
-      name:['',Validators.required],
-      email:['',Validators.required],
+      name:['',[CustoumValidators.nameValidators,CustoumValidators.required]],
+      email:['',[CustoumValidators.emailValidators,CustoumValidators.required]],
       password:['',Validators.required]
     })
   }
