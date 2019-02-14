@@ -28,4 +28,5 @@ export class SearchPreviewComponent implements OnInit {
     return this.book.volumeInfo.description;
   }
 
+
 }
