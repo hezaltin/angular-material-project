@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
       email:['',Validators.required],
       password:['',Validators.required]
     })
+    this.appService.setLoggedUser(null);
   }
 
   loginFrom(form){
@@ -27,14 +28,16 @@ export class LoginComponent implements OnInit {
     }
     let getLocaldb= JSON.parse(localStorage.getItem('logindetails'));
     console.log(getLocaldb);
-    let getVerifiedUser = this.verifyUser(getLocaldb,form.value);
-    if(!getVerifiedUser){
+    let getVerifiedUser:any = this.verifyUser(getLocaldb,form.value);
+    if(!getVerifiedUser.isValid){
       this.loginForm.setValue({
         email:'',
         password:''
       })
       return
-    }
+    };
+    console.log('getVerifiedUser==>',getVerifiedUser)
+    this.appService.setLoggedUser(getVerifiedUser.loggedInUser);
     this.router.navigate(['/search'])
     console.log(form)
   }
@@ -47,7 +50,7 @@ export class LoginComponent implements OnInit {
       return item.email === formdetails.email && item.password === formdetails.password
     })
 
-    return getFilterLogin.length > 0 ? true : false;
+    return getFilterLogin.length > 0 ? {isValid:true,loggedInUser:getFilterLogin[0]} : {isValid:false,loggedInUser:getFilterLogin};
   }
 
 }
