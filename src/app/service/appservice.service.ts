@@ -10,6 +10,8 @@ export class AppserviceService {
   private _isSearchAvailable: BehaviorSubject<any> = new BehaviorSubject(false);
   private _searchBooks: BehaviorSubject<any> = new BehaviorSubject([]);
   private _userList:BehaviorSubject<any> = new BehaviorSubject([]);
+  private _loggedUser : BehaviorSubject<any> = new BehaviorSubject(null);
+  private _userCartList :  BehaviorSubject<any> = new BehaviorSubject([]);
   constructor(private http:HttpClient) {
 
    }
@@ -19,6 +21,13 @@ export class AppserviceService {
    }
    setSearchUserList(state){
     this._userList.next(state);
+  }
+  setLoggedUser(state){
+    this._loggedUser.next(state);
+  }
+
+  setUserCartList(state){
+    this._userCartList.next(state)
   }
 
    getSearchBooks(search):Observable<any>{
@@ -43,6 +52,14 @@ export class AppserviceService {
 
     get userList(){
       return this._userList.asObservable();
+    }
+
+    get loggedUserState(){
+        return this._loggedUser.asObservable();
+    }
+
+    get userCartSavedList(){
+      return this._userCartList.asObservable();
     }
 
 

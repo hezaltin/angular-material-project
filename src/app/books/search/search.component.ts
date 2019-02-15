@@ -9,7 +9,9 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit {
   books:any;
-  private searchForm:FormGroup
+  private searchForm:FormGroup;
+  private loggedUser:any
+  private loggedUserList:any
   constructor(private appService:AppserviceService,private fb:FormBuilder) { }
 
   ngOnInit() {
@@ -23,6 +25,14 @@ export class SearchComponent implements OnInit {
     this.appService.getSearchBooks(value).subscribe(search=>this.appService.setSearchBooks(search.items));
 
     });
+    this.appService.loggedUserState.subscribe(list=>{
+      console.log(list)
+      if(!list){
+        return
+      }
+      this.loggedUser = list;
+      this.loggedUserList = this.loggedUser.userCart.map(item=>item.id);
+    })
   }
 
   
@@ -34,8 +44,43 @@ get searchInputValueChanges(){
   return this.searchInputControl.valueChanges.pipe(debounceTime(100));
 }
 
+// get loggedUserCart(){
+//   return this.loggedUser.userCart.map(item=>item.id);
+// }
+
+isAddtoCart(book){
+  return this.loggedUserList.indexOf(book.id) === (-1) ? true : false
+}
+
+
 closeSearchBar() {
  
+}
+
+addTocart(event,book){
+  console.log(event)
+  console.log(book)
+  let getLocalDb = JSON.parse(localStorage.getItem('logindetails'));
+  console.log(getLocalDb)
+  let getValidUser = this.iterateValidUser(getLocalDb,this.loggedUser);
+  if(!getValidUser.validUser){
+      return
+  }
+  event.srcElement.disabled = true
+  getLocalDb[getValidUser.index].userCart.push(book);
+  this.appService.setLoggedUser( getLocalDb[getValidUser.index]);
+  localStorage.setItem('logindetails',JSON.stringify(getLocalDb));
+
+}
+
+iterateValidUser(localDb,loggedUser){
+  return localDb.reduce((user,item,index)=>{
+        if(item.name===loggedUser.name){
+            user.validUser= item;
+            user.index = index;
+        }
+        return user;
+  },{});
 }
 
 }
