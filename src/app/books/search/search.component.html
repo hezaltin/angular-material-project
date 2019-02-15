@@ -22,6 +22,10 @@
     </mat-card-title-group>
     <mat-card-content>
       <p *ngIf="book.volumeInfo.description">{{ book.volumeInfo.description }}</p>
+      <div *ngIf="book.saleInfo.listPrice">
+        <span>Price:</span>
+        <span>{{ book.saleInfo.listPrice?.amount | currency}}</span>
+      </div>
     </mat-card-content>
     <button class="button-margin" *ngIf="book.saleInfo.listPrice && isAddtoCart(book) ; else loggedOut" mat-raised-button color="primary" (click)="addTocart($event,book)">
         Add To Cart
