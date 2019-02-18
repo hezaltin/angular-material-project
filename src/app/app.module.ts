@@ -13,6 +13,7 @@ import {SignupComponent} from './auth/signup/signup.component';
 import {SearchComponent} from './books/search/search.component';
 import { UserListComponent } from './books/user-list/user-list.component';
 import { MyBookListComponent } from './books/my-book-list/my-book-list.component';
+import { DialogComponent } from './shared/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MyBookListComponent } from './books/my-book-list/my-book-list.component
     SignupComponent,
     SearchComponent,
     UserListComponent,
-    MyBookListComponent
+    MyBookListComponent,
+    DialogComponent
     
     
   ],
@@ -37,7 +39,7 @@ import { MyBookListComponent } from './books/my-book-list/my-book-list.component
   AppROutingModule,
 
   ],
-  //entryComponents: [DialogOverviewTransferDialog],
+  entryComponents: [DialogComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

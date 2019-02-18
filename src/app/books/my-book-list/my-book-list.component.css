@@ -6,3 +6,7 @@ table {
     display:flex;
     justify-content:flex-end;
    }
+
+   tr.mat-footer-row {
+    font-weight: bold;
+  }

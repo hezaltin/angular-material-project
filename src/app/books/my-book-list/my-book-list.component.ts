@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from 'src/app/service/appservice.service';
+import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-my-book-list',
@@ -7,19 +9,20 @@ import { AppserviceService } from 'src/app/service/appservice.service';
   styleUrls: ['./my-book-list.component.css']
 })
 export class MyBookListComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'preview','pagecount','language','action'];
-  dataSource:any;
+  displayedColumns: string[] = ['position', 'name', 'cost','pagecount','language','action'];
+  bookListData:any;
   loggedUserForMyList:any;
   loggedUserList:any;
-  constructor(private appService:AppserviceService) { }
+  notes: string;
+  name: string;
+
+  constructor(private appService:AppserviceService,public dialog: MatDialog) { }
 
   ngOnInit() {
-    
     this.appService.loggedUserState.subscribe(list=>{
       if(!list){
         return
       }
-      console.log(list)
       this.loggedUserForMyList = list;
       this.loggedUserList = this.loggedUserForMyList.userCart.map(item=>item);
       this.appService.setUserCartList(this.loggedUserList);
@@ -27,29 +30,30 @@ export class MyBookListComponent implements OnInit {
     });
 
     const getUserCartListObservable = this.appService.userCartSavedList.subscribe(item=>{
-      console.log(item);
       if(!item){
-        this.dataSource = [];
+        this.bookListData = [];
         return
       }
-      this.dataSource = this.dataSourceMake(item);
+      this.bookListData = this.bookListDataMake(item);
     })
 
     
   }
 
-  dataSourceMake(userlist){
+  bookListDataMake(userlist){
     if(userlist.length===0){
       return []
     }
     let userListData = userlist.reduce((all,item,index)=>{
           let getUsers = {
             name: item.volumeInfo.title,
-            preview: item.saleInfo.listPrice.amount,
+            cost: item.saleInfo.listPrice.amount,
             pagecount :item.volumeInfo.pageCount,
             language :item.volumeInfo.language,
             position: index+1,
-            id:item.id
+            id:item.id,
+            index:index,
+            notes:item.notes || ''
           }
          all.push(getUsers);
           return all
@@ -57,31 +61,35 @@ export class MyBookListComponent implements OnInit {
     return userListData;
   }
 
-  onDelete(name){
-    console.log(name);
-
-    // let getLocalUsers = JSON.parse(localStorage.getItem('logindetails'));
-    //     let filterUsers = getLocalUsers.filter(user=> user.name!==name);
-    //     let getFilter = filterUsers.length > 0 ? filterUsers : null;
-    //     this.appService.setSearchUserList(getFilter);
-    //     localStorage.setItem('logindetails',JSON.stringify(getFilter));
-
+  getTotalCost() {
+    return this.bookListData.map(t => t.cost).reduce((acc, value) => acc + value, 0);
   }
 
   removeTocart(id){
-   console.log(id)
     let getLocalDb = JSON.parse(localStorage.getItem('logindetails'));
-    console.log(getLocalDb)
     let getValidUser = this.iterateValidUser(getLocalDb,this.loggedUserForMyList);
     if(!getValidUser.validUser){
         return
     }
-    
+
     getLocalDb[getValidUser.index].userCart =  getLocalDb[getValidUser.index].userCart.filter(bookId=>bookId.id!==id);
     this.appService.setUserCartList( getLocalDb[getValidUser.index].userCart);
     this.appService.setLoggedUser( getLocalDb[getValidUser.index]);
     localStorage.setItem('logindetails',JSON.stringify(getLocalDb));
   
+  }
+
+  updateNotes(bookNotes){
+    let getLocalDb = JSON.parse(localStorage.getItem('logindetails'));
+    let getValidUser = this.iterateValidUser(getLocalDb,this.loggedUserForMyList);
+    if(!getValidUser.validUser){
+        return
+    }
+    getLocalDb[getValidUser.index].userCart[bookNotes.index]['notes'] =  bookNotes.updatedNotes
+    this.appService.setUserCartList( getLocalDb[getValidUser.index].userCart);
+    this.appService.setLoggedUser( getLocalDb[getValidUser.index]);
+    localStorage.setItem('logindetails',JSON.stringify(getLocalDb));
+    
   }
   
   iterateValidUser(localDb,loggedUser){
@@ -92,6 +100,22 @@ export class MyBookListComponent implements OnInit {
           }
           return user;
     },{});
+  }
+
+  openDialog(bookData): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '500px',
+      data: {name: bookData.name, notes: bookData.notes}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    
+     if(!result){
+       return
+     }
+     this.updateNotes({index:bookData.index,updatedNotes:result})
+
+    });
   }
 
 
