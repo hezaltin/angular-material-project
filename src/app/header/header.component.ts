@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.router.navigate(['/'])
       this.appService.isSearchAvailable.subscribe(search=>{
-        console.log(search)
         this.isSearchOn = search;
       });
 

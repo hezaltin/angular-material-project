@@ -31,9 +31,7 @@ export class AppserviceService {
   }
 
    getSearchBooks(search):Observable<any>{
-     console.log(search)
      const bookSearch = encodeURI("https://www.googleapis.com/books/v1/volumes?q="+search +"&maxResults=12")
-     console.log(bookSearch)
       return this.http.get(bookSearch);
    }
 

@@ -21,12 +21,10 @@ export class SearchComponent implements OnInit {
       searchInput:['']
     });
     this.searchInputValueChanges.subscribe(value=>{
-      console.log(value);
     this.appService.getSearchBooks(value).subscribe(search=>this.appService.setSearchBooks(search.items));
 
     });
     this.appService.loggedUserState.subscribe(list=>{
-      console.log(list)
       if(!list){
         return
       }
@@ -58,10 +56,7 @@ closeSearchBar() {
 }
 
 addTocart(event,book){
-  console.log(event)
-  console.log(book)
   let getLocalDb = JSON.parse(localStorage.getItem('logindetails'));
-  console.log(getLocalDb)
   let getValidUser = this.iterateValidUser(getLocalDb,this.loggedUser);
   if(!getValidUser.validUser){
       return

@@ -9,9 +9,9 @@ import { UserListComponent } from './books/user-list/user-list.component';
 import { MyBookListComponent } from './books/my-book-list/my-book-list.component';
 
 const routes:Routes = [
+    {path: '' , component:LoginComponent},
     {path: 'login' , component:LoginComponent},
-    {path: 'login' , component:LoginComponent},
-     {path: '' , component:SearchComponent},
+     {path: 'search' , component:SearchComponent},
     // {path: 'create' , component:PostCreateComponent},
   
      {path: 'signup' , component:SignupComponent},

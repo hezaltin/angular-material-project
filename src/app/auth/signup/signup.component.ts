@@ -28,14 +28,11 @@ export class SignupComponent implements OnInit {
     if(form.invalid){
       return;
     }
-    console.log(form.value)
     let getLocalDb = JSON.parse(localStorage.getItem('logindetails'));
-    console.log(getLocalDb);
       let setLocalDb= getLocalDb? [form.value,...getLocalDb] : [form.value];
       this.appService.setLoggedUser(form.value);
     localStorage.setItem('logindetails',JSON.stringify(setLocalDb))
-    this.router.navigate(['/search'])
-    console.log(form)
+    this.router.navigate(['/search']);
   }
 
 }

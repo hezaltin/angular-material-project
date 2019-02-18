@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
       return;
     }
     let getLocaldb= JSON.parse(localStorage.getItem('logindetails'));
-    console.log(getLocaldb);
     let getVerifiedUser:any = this.verifyUser(getLocaldb,form.value);
     if(!getVerifiedUser.isValid){
       this.loginForm.setValue({
@@ -36,10 +35,8 @@ export class LoginComponent implements OnInit {
       })
       return
     };
-    console.log('getVerifiedUser==>',getVerifiedUser)
     this.appService.setLoggedUser(getVerifiedUser.loggedInUser);
     this.router.navigate(['/search'])
-    console.log(form)
   }
 
   verifyUser(getLogindetails,formdetails){

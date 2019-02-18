@@ -18,7 +18,6 @@ export class UserListComponent implements OnInit {
       this.dataSource = this.dataSourceMake(getUserListFromLocal);
 
       const getUserListObservable = this.appService.userList.subscribe(item=>{
-        console.log(item);
         if(!item){
           this.dataSource = [];
           return
@@ -44,8 +43,6 @@ export class UserListComponent implements OnInit {
   }
 
   onDelete(name){
-    console.log(name);
-
     let getLocalUsers = JSON.parse(localStorage.getItem('logindetails'));
         let filterUsers = getLocalUsers.filter(user=> user.name!==name);
         let getFilter = filterUsers.length > 0 ? filterUsers : null;
