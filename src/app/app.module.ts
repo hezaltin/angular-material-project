@@ -14,6 +14,7 @@ import {SearchComponent} from './books/search/search.component';
 import { UserListComponent } from './books/user-list/user-list.component';
 import { MyBookListComponent } from './books/my-book-list/my-book-list.component';
 import { DialogComponent } from './shared/dialog/dialog.component';
+import { RetirementCalculatorComponent } from './books/retirement-calculator/retirement-calculator.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { DialogComponent } from './shared/dialog/dialog.component';
     SearchComponent,
     UserListComponent,
     MyBookListComponent,
+    RetirementCalculatorComponent,
     DialogComponent
     
     
