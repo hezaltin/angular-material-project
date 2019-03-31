@@ -1,0 +1,55 @@
+<mat-form-field>
+  <mat-label>Select Option</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let food of dropdownListData" [value]="food.value">
+      {{food.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field class="filter">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+  <ng-container matColumnDef="fId">
+    <th mat-header-cell *matHeaderCellDef  mat-sort-header> F-ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.fId}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="chemId">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Chem-ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.chemId}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Quantity(g) </th>
+    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="materialName">
+    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Material Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.materialName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element"  (click)="$event.stopPropagation()"> 
+      <!-- <button mat-button (click)="onDelete(element.chemId)">
+        <mat-icon>delete</mat-icon> 
+      </button> -->
+      <button mat-button (click)="onEditDialog({index:element.index,quantity:element.quantity,materialName:element.materialName})">
+        <mat-icon>edit</mat-icon> 
+      </button>
+</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

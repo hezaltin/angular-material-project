@@ -91,6 +91,12 @@ export class MyBookListComponent implements OnInit {
     localStorage.setItem('logindetails',JSON.stringify(getLocalDb));
     
   }
+
+  eventClick(event,elem){
+    console.log('event===>',event)
+    console.log(elem)
+    this.openDialogEvent({index:elem.index,notes:elem.notes,name:elem.name},event.target.offsetTop,event.target.offsetLeft)
+  }
   
   iterateValidUser(localDb,loggedUser){
     return localDb.reduce((user,item,index)=>{
@@ -108,6 +114,26 @@ export class MyBookListComponent implements OnInit {
       data: {name: bookData.name, notes: bookData.notes}
     });
 
+    dialogRef.afterClosed().subscribe(result => {
+    
+     if(!result){
+       return
+     }
+     this.updateNotes({index:bookData.index,updatedNotes:result})
+
+    });
+  }
+
+
+  openDialogEvent(bookData,top,left): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '500px',
+      
+      data: {name: bookData.name, notes: bookData.notes}
+    });
+    console.log(top)
+    console.log(left)
+    dialogRef.updatePosition({top:`${top.toString()}px`,left:`${left.toString()}px`})
     dialogRef.afterClosed().subscribe(result => {
     
      if(!result){
