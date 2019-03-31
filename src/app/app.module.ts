@@ -15,6 +15,8 @@ import { UserListComponent } from './books/user-list/user-list.component';
 import { MyBookListComponent } from './books/my-book-list/my-book-list.component';
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { RetirementCalculatorComponent } from './books/retirement-calculator/retirement-calculator.component';
+import { RecordsListComponent } from './books/records-list/records-list.component';
+import { RecordsDialogComponent } from './shared/records-dialog/records-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { RetirementCalculatorComponent } from './books/retirement-calculator/ret
     UserListComponent,
     MyBookListComponent,
     RetirementCalculatorComponent,
-    DialogComponent
+    RecordsListComponent,
+    DialogComponent,
+    RecordsDialogComponent
     
     
   ],
@@ -41,7 +45,7 @@ import { RetirementCalculatorComponent } from './books/retirement-calculator/ret
   AppROutingModule,
 
   ],
-  entryComponents: [DialogComponent],
+  entryComponents: [DialogComponent,RecordsDialogComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

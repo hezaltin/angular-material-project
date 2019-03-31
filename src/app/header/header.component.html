@@ -9,9 +9,7 @@
       <li *ngIf="!isSearchOn">
           <a mat-button routerLink="/signup" routerLinkActive="mat-accent">SignUp</a>
       </li>
-      <li *ngIf="isSearchOn">
-          <a mat-button routerLink="/login" routerLinkActive="mat-accent">LogOut</a>
-      </li>
+     
       <li *ngIf="isSearchOn">
         <a mat-button routerLink="/search" routerLinkActive="mat-accent">Search Books</a>
     </li>
@@ -24,6 +22,12 @@
       <li *ngIf="isSearchOn">
         <a mat-button routerLink="/retirement" routerLinkActive="mat-accent">Retirement Calculator</a>
       </li>
+      <li *ngIf="isSearchOn">
+        <a mat-button routerLink="/records" routerLinkActive="mat-accent">Record List</a>
+      </li>
+      <li *ngIf="isSearchOn">
+        <a mat-button routerLink="/login" routerLinkActive="mat-accent">LogOut</a>
+    </li>
   </ul>
   
 

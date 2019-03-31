@@ -12,6 +12,8 @@ export class AppserviceService {
   private _userList:BehaviorSubject<any> = new BehaviorSubject([]);
   private _loggedUser : BehaviorSubject<any> = new BehaviorSubject(null);
   private _userCartList :  BehaviorSubject<any> = new BehaviorSubject([]);
+
+  private _recordsList:BehaviorSubject<any> = new BehaviorSubject([]);
   constructor(private http:HttpClient) {
 
    }
@@ -24,6 +26,10 @@ export class AppserviceService {
   }
   setLoggedUser(state){
     this._loggedUser.next(state);
+  }
+  setRecordsList(state){
+    console.log(state)
+    this._recordsList.next(state)
   }
 
   setUserCartList(state){
@@ -58,6 +64,10 @@ export class AppserviceService {
 
     get userCartSavedList(){
       return this._userCartList.asObservable();
+    }
+
+    get userRecordsList(){
+      return this._recordsList.asObservable()
     }
 
 

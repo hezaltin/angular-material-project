@@ -8,6 +8,7 @@ import {Routes,RouterModule} from '@angular/router';
 import { UserListComponent } from './books/user-list/user-list.component';
 import { MyBookListComponent } from './books/my-book-list/my-book-list.component';
 import { RetirementCalculatorComponent } from './books/retirement-calculator/retirement-calculator.component';
+import { RecordsListComponent } from './books/records-list/records-list.component';
 
 const routes:Routes = [
     {path: '' , component:LoginComponent},
@@ -18,7 +19,8 @@ const routes:Routes = [
      {path: 'signup' , component:SignupComponent},
      {path: 'userlist' , component:UserListComponent},
      {path: 'mybooklist' , component:MyBookListComponent},
-     {path:'retirement', component: RetirementCalculatorComponent}
+     {path:'retirement', component: RetirementCalculatorComponent},
+     {path:'records', component: RecordsListComponent}
      
     // {path: 'edit/:postId' , component:PostCreateComponent}
 ]

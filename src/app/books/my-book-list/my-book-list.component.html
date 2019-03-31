@@ -21,7 +21,7 @@
 
     <ng-container matColumnDef="pagecount">
         <th mat-header-cell *matHeaderCellDef> PageCount </th>
-        <td mat-cell *matCellDef="let element"> {{element.pagecount}} </td>
+        <td mat-cell *matCellDef="let element" (click)="eventClick($event,element)"> {{element.pagecount}} </td>
         <td mat-footer-cell *matFooterCellDef>  </td>
       </ng-container>
 
