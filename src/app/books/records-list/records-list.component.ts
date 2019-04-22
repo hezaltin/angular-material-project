@@ -4,7 +4,7 @@ import { RecordsDialogComponent } from 'src/app/shared/records-dialog/records-di
 import { AppserviceService } from 'src/app/service/appservice.service';
 
 
-const ELEMENT_DATA = [ {fId: 1, chemId: '2', quantity: 3.21, materialName: 'PAPI 27',type:'polyol',index:0},
+const RECORD_DATA = [ {fId: 1, chemId: '2', quantity: 3.21, materialName: 'PAPI 27',type:'polyol',index:0},
 {fId: 1, chemId: '5', quantity: 6.22, materialName: 'PAPI 27',type:'polyol',index:1},
 {fId: 1, chemId: '8', quantity: 9.22, materialName: 'PAPI 27',type:'polyol',index:2},
 {fId: 1, chemId: '11', quantity: 12.33, materialName: 'PAPI 27',type:'polyol',index:3}
@@ -27,7 +27,7 @@ export class RecordsListComponent implements OnInit {
  
   @ViewChild(MatSort) sort: MatSort;
   constructor(public dialog: MatDialog,private appService:AppserviceService) { 
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    this.dataSource = new MatTableDataSource(RECORD_DATA);
   }
 
   ngOnInit() {
@@ -62,7 +62,7 @@ export class RecordsListComponent implements OnInit {
   openDialog(records): void {
     const dialogRef = this.dialog.open(RecordsDialogComponent, {
       width: '500px',
-      data: {quantity: records.quantity, materialName: records.materialName}
+      data: {quantity: records.quantity, materialName: records.materialName,component:'recordList'}
     });
 
     dialogRef.afterClosed().subscribe(result => {

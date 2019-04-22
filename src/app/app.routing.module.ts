@@ -9,6 +9,8 @@ import { UserListComponent } from './books/user-list/user-list.component';
 import { MyBookListComponent } from './books/my-book-list/my-book-list.component';
 import { RetirementCalculatorComponent } from './books/retirement-calculator/retirement-calculator.component';
 import { RecordsListComponent } from './books/records-list/records-list.component';
+import { JobsComponent } from './books/jobs/jobs.component';
+import { JobListComponent } from './books/job-list/job-list.component';
 
 const routes:Routes = [
     {path: '' , component:LoginComponent},
@@ -20,7 +22,9 @@ const routes:Routes = [
      {path: 'userlist' , component:UserListComponent},
      {path: 'mybooklist' , component:MyBookListComponent},
      {path:'retirement', component: RetirementCalculatorComponent},
-     {path:'records', component: RecordsListComponent}
+     {path:'records', component: RecordsListComponent},
+     {path:'job', component: JobsComponent},
+     {path:'joblist', component: JobListComponent}
      
     // {path: 'edit/:postId' , component:PostCreateComponent}
 ]
