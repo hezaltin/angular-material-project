@@ -26,6 +26,12 @@
         <a mat-button routerLink="/records" routerLinkActive="mat-accent">Record List</a>
       </li>
       <li *ngIf="isSearchOn">
+        <a mat-button routerLink="/job" routerLinkActive="mat-accent">Job</a>
+      </li>
+      <li *ngIf="isSearchOn">
+          <a mat-button routerLink="/joblist" routerLinkActive="mat-accent">Job List</a>
+        </li>
+      <li *ngIf="isSearchOn">
         <a mat-button routerLink="/login" routerLinkActive="mat-accent">LogOut</a>
     </li>
   </ul>

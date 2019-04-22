@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { AppserviceService } from 'src/app/service/appservice.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-fdescribe('SignupComponent', () => {
+describe('SignupComponent', () => {
   let component: SignupComponent;
   let fixture: ComponentFixture<SignupComponent>;
     const fakeRoute = {

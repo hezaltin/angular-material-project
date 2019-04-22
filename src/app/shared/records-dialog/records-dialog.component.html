@@ -1,14 +1,34 @@
-<h1 mat-dialog-title>Material: {{data.materialName}}</h1>
-<div mat-dialog-content>
-  <p>Edit Details</p>
-  <mat-form-field>
-      <input matInput type="number" placeholder="Quantity"  [(ngModel)]="data.quantity"/>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Magterial Name"  [(ngModel)]="data.materialName"/>
-</mat-form-field>
+<div *ngIf="data.component=='recordList'">
+    <h1 mat-dialog-title>Material: {{data.materialName}}</h1>
+    <div mat-dialog-content>
+      <p>Edit Details</p>
+      <mat-form-field>
+          <input matInput type="number" placeholder="Quantity"  [(ngModel)]="data.quantity"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Magterial Name"  [(ngModel)]="data.materialName"/>
+    </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">No Thanks</button>
+      <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+    </div>
+    
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+<div *ngIf="data.component=='jobList'">
+    <h1 mat-dialog-title>Material: {{data.jobName}}</h1>
+    <div mat-dialog-content>
+      <p>Edit Details</p>
+      <mat-form-field>
+          <input matInput type="email" placeholder="Email"  [(ngModel)]="data.email"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Job Name"  [(ngModel)]="data.jobName"/>
+    </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">No Thanks</button>
+      <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+    </div>
+    
 </div>

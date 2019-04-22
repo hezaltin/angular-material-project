@@ -17,6 +17,9 @@ import { DialogComponent } from './shared/dialog/dialog.component';
 import { RetirementCalculatorComponent } from './books/retirement-calculator/retirement-calculator.component';
 import { RecordsListComponent } from './books/records-list/records-list.component';
 import { RecordsDialogComponent } from './shared/records-dialog/records-dialog.component';
+import { JobsComponent } from './books/jobs/jobs.component';
+import { JobListComponent } from './books/job-list/job-list.component';
+import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +32,11 @@ import { RecordsDialogComponent } from './shared/records-dialog/records-dialog.c
     MyBookListComponent,
     RetirementCalculatorComponent,
     RecordsListComponent,
+    JobsComponent,
+    JobListComponent,
     DialogComponent,
-    RecordsDialogComponent
+    RecordsDialogComponent,
+    ConfirmationDialogComponent
     
     
   ],
@@ -45,7 +51,7 @@ import { RecordsDialogComponent } from './shared/records-dialog/records-dialog.c
   AppROutingModule,
 
   ],
-  entryComponents: [DialogComponent,RecordsDialogComponent],
+  entryComponents: [DialogComponent,RecordsDialogComponent,ConfirmationDialogComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

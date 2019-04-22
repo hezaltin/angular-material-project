@@ -14,6 +14,7 @@ export class AppserviceService {
   private _userCartList :  BehaviorSubject<any> = new BehaviorSubject([]);
 
   private _recordsList:BehaviorSubject<any> = new BehaviorSubject([]);
+  private _jobList :BehaviorSubject<any> = new BehaviorSubject([])
   constructor(private http:HttpClient) {
 
    }
@@ -36,6 +37,9 @@ export class AppserviceService {
     this._userCartList.next(state)
   }
 
+  setJobsList(state){
+    this._jobList.next(state);
+  }
    getSearchBooks(search):Observable<any>{
      const bookSearch = encodeURI("https://www.googleapis.com/books/v1/volumes?q="+search +"&maxResults=12")
       return this.http.get(bookSearch);
@@ -68,6 +72,10 @@ export class AppserviceService {
 
     get userRecordsList(){
       return this._recordsList.asObservable()
+    }
+
+    get userJobsList(){
+      return this._jobList.asObservable();
     }
 
 
