@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppserviceService } from 'src/app/service/appservice.service';
 
 @Component({
   selector: 'app-retirement-calculator',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RetirementCalculatorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appService:AppserviceService) { }
 
   ngOnInit() {
+    this.appService.getemployeeDetails().subscribe(employeeList=>{
+      console.log('employeeList==>',employeeList)
+    })
   }
 
 }

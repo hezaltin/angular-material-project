@@ -45,6 +45,10 @@ export class AppserviceService {
       return this.http.get(bookSearch);
    }
 
+   getemployeeDetails(){
+    const bookSearch = encodeURI("http://localhost:3000/employees")
+    return this.http.get(bookSearch);
+   }
     setSearchBooks(books){
       this._searchBooks.next(books)
     }
