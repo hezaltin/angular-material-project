@@ -20,6 +20,9 @@ import { RecordsDialogComponent } from './shared/records-dialog/records-dialog.c
 import { JobsComponent } from './books/jobs/jobs.component';
 import { JobListComponent } from './books/job-list/job-list.component';
 import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -46,8 +49,11 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
     ReactiveFormsModule,
     BrowserAnimationsModule,
   //  NoopAnimationsModule,
+  NgbModule,
+  NgxDatatableModule,
     HttpClientModule,
     MaterialModule,
+    MatSidenavModule,
   AppROutingModule,
 
   ],
