@@ -1,0 +1,12 @@
+<div class="drop-down-container">
+  <label>{{dropdownLabel}}:</label>
+  <div class="custom-select" style="width:100px;"  #list>
+    <div class="select-selected" [ngClass]="{'select-arrow-active':dropDownToggle == true}" (click)="toogledropdown($event)" #dropdownSelect>
+      {{selectdElement}}
+    </div>
+    <div class="select-items" [ngClass]="{'select-hide':dropDownToggle==false}" #dropdownListNodes>
+        <div *ngFor="let food of dropdownList" (click)="actionTrigered($event,food)"> {{food.viewValue}}</div>
+    </div>
+   
+  </div>
+</div>

@@ -24,7 +24,12 @@ const routes:Routes = [
      {path:'retirement', component: RetirementCalculatorComponent},
      {path:'records', component: RecordsListComponent},
      {path:'job', component: JobsComponent},
-     {path:'joblist', component: JobListComponent}
+     {path:'joblist', component: JobListComponent},
+     {
+        path: 'crisis-center',
+        loadChildren: () => import('./heroes/heroes.module').then(mod => mod.HeroesModule),
+        data: { preload: true }
+      },
      
     // {path: 'edit/:postId' , component:PostCreateComponent}
 ]
