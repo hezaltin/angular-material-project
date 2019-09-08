@@ -11,6 +11,16 @@
     <mat-icon aria-label="Cancel search">close</mat-icon>
   </button>
 </div>
+
+<h4>Basic mat-select</h4>
+<mat-form-field>
+  <mat-label>Moment Time Zone Names</mat-label>
+  <mat-select (selectionChange)="selectedZone($event)">
+    <mat-option *ngFor="let food of momentTimzoneNames" [value]="food">
+      {{food}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
  
  <mat-card *ngFor="let book of books | async" class="mat-card-margin">
     <mat-card-title-group>

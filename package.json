@@ -28,6 +28,7 @@
     "body-parser": "^1.18.3",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
+    "moment-timezone": "^0.5.26",
     "mysql": "^2.17.1",
     "nodemon": "^1.18.11",
     "rxjs": "^6.0.0",
