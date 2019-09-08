@@ -13,7 +13,7 @@ import { JobsComponent } from './books/jobs/jobs.component';
 import { JobListComponent } from './books/job-list/job-list.component';
 
 const routes:Routes = [
-    {path: '' , component:LoginComponent},
+    {path: 'name' , component:LoginComponent},
     {path: 'login' , component:LoginComponent},
      {path: 'search' , component:SearchComponent},
     // {path: 'create' , component:PostCreateComponent},
@@ -26,7 +26,7 @@ const routes:Routes = [
      {path:'job', component: JobsComponent},
      {path:'joblist', component: JobListComponent},
      {
-        path: 'crisis-center',
+        path: '',
         loadChildren: () => import('./heroes/heroes.module').then(mod => mod.HeroesModule),
         data: { preload: true }
       },
