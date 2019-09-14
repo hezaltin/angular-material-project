@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AppserviceService} from '../../service/appservice.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import * as moment from 'moment-timezone';
+import {timeZoneList} from './search-timezone.config'
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -14,11 +15,20 @@ export class SearchComponent implements OnInit {
   private loggedUser: any;
   private loggedUserList: any;
   public momentTimzoneNames :any;
+  date = new FormControl(new Date());
+  previousValue = 'Asia/Calcutta' ;
+  prevTime = {
+    hour:moment().hour(),
+    minute:moment().minute(),
+    seconds:moment().seconds()
+  }
+  format:any;
   constructor(private appService: AppserviceService, private fb: FormBuilder) { }
 
   ngOnInit() {
     console.log(moment.tz.names());
-    this.momentTimzoneNames = moment.tz.names();
+    this.momentTimzoneNames = timeZoneList
+   // this.momentTimzoneNames = moment.tz.names();
     this.appService.setSeatchOn(true);
     this.books = this.appService.searchBooks;
     this.searchForm = this.fb.group({
@@ -38,16 +48,34 @@ export class SearchComponent implements OnInit {
   }
 
   selectedZone(zoneEvent){
-    console.log(moment.tz.guess())
-    let names = moment.tz(new Date(),moment.tz.guess())
-    console.log(zoneEvent.value)
-    console.log('currentTime==>',moment(new Date()).format('YYYY-MM-DDThh:mm:ss'))
-    var input = moment(new Date()).format('YYYY-MM-DDThh:mm:ss')
-var fmt   = "YYYY-MM-DDThh:mm:ss";
-    let addedTimeZone = names.clone().tz(zoneEvent.value).format(fmt);
+    let setvalues  = moment(this.date.value)
+    console.log(new Date(setvalues))
+    let names = moment.tz(setvalues, moment.tz.guess());
+    console.log('names==>',names);
+
+    var input = moment.tz(setvalues,this.previousValue).format('YYYY-MM-DDThh:mm:ss')
+    var fmt   = "YYYY-MM-DDThh:mm:ss";
+    //let addedTimeZone = moment(setvalues).tz(zoneEvent.value).format(fmt);
+    let addedTimeZone = names.clone().tz(zoneEvent.value)
    let name =  moment.tz(input, fmt, zoneEvent.value).utc().format(fmt);
    console.log('UtC TimeZone==>',name)
    console.log('addedTimeZone==>',addedTimeZone)
+
+   console.log(moment(addedTimeZone).hour())
+   console.log(moment(addedTimeZone).minute())
+   console.log(moment(addedTimeZone).seconds())
+    this.format = addedTimeZone
+   ;
+
+   console.log(new Date (moment(addedTimeZone).local()))
+   this.date.setValue(new Date (moment(addedTimeZone).local()));
+   
+   this.previousValue = zoneEvent.value;
+   this.prevTime = {
+     hour: moment(addedTimeZone).hour(),
+     minute:moment(addedTimeZone).minute(),
+     seconds:moment(addedTimeZone).seconds()
+   }
   }
 
 
