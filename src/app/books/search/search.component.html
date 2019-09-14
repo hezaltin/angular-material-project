@@ -16,11 +16,18 @@
 <mat-form-field>
   <mat-label>Moment Time Zone Names</mat-label>
   <mat-select (selectionChange)="selectedZone($event)">
-    <mat-option *ngFor="let food of momentTimzoneNames" [value]="food">
-      {{food}}
+    <mat-option *ngFor="let timezone of momentTimzoneNames" [value]="timezone.timezone">
+      {{timezone.text}}
     </mat-option>
   </mat-select>
 </mat-form-field>
+{{format}}
+<mat-form-field>
+  <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="date">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+
  
  <mat-card *ngFor="let book of books | async" class="mat-card-margin">
     <mat-card-title-group>
