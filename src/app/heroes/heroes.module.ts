@@ -4,7 +4,7 @@ import { HeroesRoutingModule } from './heroes.routing.module';
 import { TabViewComponent } from './views/tab-view/tab-view.component';
 import { HeroesComponent } from './heroes.component';
 import { NavigationComponent } from './views/navigation/navigation.component';
-import { MatSidenavModule } from '@angular/material';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { CrisisComponent } from './views/crisis/crisis.component';
 
 @NgModule({

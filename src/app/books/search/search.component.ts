@@ -4,18 +4,28 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import * as moment from 'moment-timezone';
 import {timeZoneList} from './search-timezone.config'
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
+  providers: [
+    // `MomentDateAdapter` and `MAT_MOMENT_DATE_FORMATS` can be automatically provided by importing
+    // `MatMomentDateModule` in your applications root module. We provide it at the component level
+    // here, due to limitations of our example generation script.
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ],
 })
 export class SearchComponent implements OnInit {
   books: any;
-  private searchForm: FormGroup;
-  private loggedUser: any;
-  private loggedUserList: any;
+  public searchForm: FormGroup;
+  public loggedUser: any;
+  public loggedUserList: any;
   public momentTimzoneNames :any;
   date = new FormControl(new Date());
+  nativeChanged = new Date()
   previousValue = 'Asia/Calcutta' ;
   prevTime = {
     hour:moment().hour(),
@@ -47,8 +57,13 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  formatFunc($event){
+    console.log($event)
+    this.nativeChanged = moment($event.value);
+  }
+
   selectedZone(zoneEvent){
-    let setvalues  = moment(this.date.value)
+    let setvalues  = moment(this.nativeChanged)
     console.log(new Date(setvalues))
     let names = moment.tz(setvalues, moment.tz.guess());
     console.log('names==>',names);
@@ -66,9 +81,9 @@ export class SearchComponent implements OnInit {
    console.log(moment(addedTimeZone).seconds())
     this.format = addedTimeZone
    ;
-
+    console.log(moment([moment(addedTimeZone).year(),moment(addedTimeZone).month(),moment(addedTimeZone).date()]))
    console.log(new Date (moment(addedTimeZone).local()))
-   this.date.setValue(new Date (moment(addedTimeZone).local()));
+   this.date.setValue(moment([moment(addedTimeZone).year(),moment(addedTimeZone).month(),moment(addedTimeZone).date()]));
    
    this.previousValue = zoneEvent.value;
    this.prevTime = {

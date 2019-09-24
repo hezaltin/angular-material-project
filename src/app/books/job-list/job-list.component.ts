@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatDialog, MatSort } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { AppserviceService } from 'src/app/service/appservice.service';
 import { RecordsDialogComponent } from 'src/app/shared/records-dialog/records-dialog.component';
 import { Subscription } from 'rxjs';
@@ -13,7 +15,7 @@ export class JobListComponent implements OnInit {
 
   displayedColumns: string[] = [ 'batchType', 'email', 'jobName','jobType','timeStamp','action'];
   dataSource: MatTableDataSource<any>;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort,{static:false}) sort: MatSort;
   jobListSubscription = new Subscription();
   constructor(public dialog: MatDialog,private appService:AppserviceService) { }
 
