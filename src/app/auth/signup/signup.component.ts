@@ -11,6 +11,7 @@ import { AppserviceService } from 'src/app/service/appservice.service';
 })
 export class SignupComponent implements OnInit {
   signUpForm:FormGroup
+  public isLoading:boolean;
   constructor(public router:Router,public fb:FormBuilder,public appService:AppserviceService) { }
 
   ngOnInit() {

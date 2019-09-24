@@ -23,6 +23,8 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { DropdownComponent } from './books/dropdown/dropdown.component';
+import { SearchPreviewComponent } from './books/search-preview/search-preview.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +41,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     JobListComponent,
     DialogComponent,
     RecordsDialogComponent,
-    ConfirmationDialogComponent
-    
+    ConfirmationDialogComponent,
+    DropdownComponent,
+    SearchPreviewComponent
     
   ],
   imports: [

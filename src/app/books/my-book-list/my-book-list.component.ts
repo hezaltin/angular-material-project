@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from 'src/app/service/appservice.service';
 import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-my-book-list',

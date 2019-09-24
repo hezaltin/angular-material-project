@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private isSearchOn: boolean;
-  private searchForm: FormGroup;
+  public isSearchOn: boolean;
+  public searchForm: FormGroup;
   constructor(private appService: AppserviceService, private router: Router) { }
 
   ngOnInit() {

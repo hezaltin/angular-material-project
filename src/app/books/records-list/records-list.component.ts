@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { RecordsDialogComponent } from 'src/app/shared/records-dialog/records-dialog.component';
 import { AppserviceService } from 'src/app/service/appservice.service';
 
@@ -25,7 +27,7 @@ export class RecordsListComponent implements OnInit {
     {value: 'tacos-2', viewValue: 'Tacos'}
   ];
  
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort,{static:false}) sort: MatSort;
   constructor(public dialog: MatDialog,private appService:AppserviceService) { 
     this.dataSource = new MatTableDataSource(RECORD_DATA);
   }
