@@ -3,7 +3,7 @@ import {AppserviceService} from '../../service/appservice.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import * as moment from 'moment-timezone';
-import {timeZoneList} from './search-timezone.config'
+import {timeZoneList,UNIVERSAL_TIME_ZONE} from './search-timezone.config'
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 @Component({
@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     console.log(moment.tz.names());
-    this.momentTimzoneNames = timeZoneList
+    this.momentTimzoneNames = UNIVERSAL_TIME_ZONE
    // this.momentTimzoneNames = moment.tz.names();
     this.appService.setSeatchOn(true);
     this.books = this.appService.searchBooks;
@@ -55,6 +55,13 @@ export class SearchComponent implements OnInit {
       this.loggedUser = list;
       this.loggedUserList = this.loggedUser.userCart.map(item => item.id);
     });
+
+    const daylightSavingDate = '2019-03-10'
+
+    const naes= UNIVERSAL_TIME_ZONE.map((item,index)=>{
+      return item['zoneutc'] = `${moment(daylightSavingDate).tz(item.timezone).format('Z')}--${item.displayName}`
+    })
+    console.log(naes)
   }
 
   formatFunc($event){

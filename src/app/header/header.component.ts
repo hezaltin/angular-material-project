@@ -3,6 +3,7 @@ import {AppserviceService} from '../service/appservice.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   public isSearchOn: boolean;
   public searchForm: FormGroup;
-  constructor(private appService: AppserviceService, private router: Router) { }
+  constructor(private appService: AppserviceService, private router: Router,private translate:TranslateService) { }
 
   ngOnInit() {
     const getLocaldb = JSON.parse(localStorage.getItem('logindetails'));

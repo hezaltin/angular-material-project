@@ -1,41 +1,41 @@
 <mat-toolbar color="primary">
-  <span><a routerLink="/">MyMessages</a></span>
+  <span><a routerLink="/">{{ 'HEADER.HEADER_MY_MESSAGES' | translate }}</a></span>
   <span class="spacer"></span>
   <ul>
-    
+      
       <li *ngIf="!isSearchOn">
-          <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+          <a mat-button routerLink="/login" routerLinkActive="mat-accent">{{ 'HEADER.HEADER_LOGIN' | translate }}</a>
       </li>
       <li *ngIf="!isSearchOn">
-          <a mat-button routerLink="/signup" routerLinkActive="mat-accent">SignUp</a>
+          <a mat-button routerLink="/signup" routerLinkActive="mat-accent">{{ 'HEADER.HEADER_SIGN_UP' | translate }}</a>
       </li>
      
       <li *ngIf="isSearchOn">
-        <a mat-button routerLink="/search" routerLinkActive="mat-accent">Search Books</a>
+        <a mat-button routerLink="/search" routerLinkActive="mat-accent">{{ 'HEADER.HEADER_SEARCH_BOOKS' | translate }}</a>
     </li>
       <li *ngIf="isSearchOn">
-        <a mat-button routerLink="/userlist" routerLinkActive="mat-accent">User List</a>
+        <a mat-button routerLink="/userlist" routerLinkActive="mat-accent">{{ 'HEADER.HEADER_MY_BOOK_LIST' | translate }}</a>
       </li>
       <li *ngIf="isSearchOn">
-        <a mat-button routerLink="/mybooklist" routerLinkActive="mat-accent">My Book List</a>
+        <a mat-button routerLink="/mybooklist" routerLinkActive="mat-accent">{{ 'HEADER.HEADER_SEARCH_BOOKS' | translate }}</a>
       </li>
       <li *ngIf="isSearchOn">
-        <a mat-button routerLink="/retirement" routerLinkActive="mat-accent">Retirement Calculator</a>
+        <a mat-button routerLink="/retirement" routerLinkActive="mat-accent">{{ 'HEADER.HEADER_RETIREMENT_CALCULATOR' | translate }}</a>
       </li>
       <li *ngIf="isSearchOn">
-        <a mat-button routerLink="/records" routerLinkActive="mat-accent">Record List</a>
+        <a mat-button routerLink="/records" routerLinkActive="mat-accent">{{ 'HEADER.HEADER_RECORD_LIST' | translate }}</a>
       </li>
       <li *ngIf="isSearchOn">
-        <a mat-button routerLink="/job" routerLinkActive="mat-accent">Job</a>
+        <a mat-button routerLink="/job" routerLinkActive="mat-accent">{{ 'HEADER.HEADER_JOB' | translate }}</a>
       </li>
       <li *ngIf="isSearchOn">
-        <a mat-button routerLink="/crisis-center" routerLinkActive="mat-accent">Crisis</a>
+        <a mat-button routerLink="/crisis-center" routerLinkActive="mat-accent">{{ 'HEADER.HEADER_CRISIS' | translate }}</a>
       </li>
       <li *ngIf="isSearchOn">
-          <a mat-button routerLink="/joblist" routerLinkActive="mat-accent">Job List</a>
+          <a mat-button routerLink="/joblist" routerLinkActive="mat-accent">{{ 'HEADER.HEADER_JOB_LIST' | translate }}</a>
         </li>
       <li *ngIf="isSearchOn">
-        <a mat-button routerLink="/login" routerLinkActive="mat-accent">LogOut</a>
+        <a mat-button routerLink="/login" routerLinkActive="mat-accent">{{ 'HEADER.HEADER_LOGOUT' | translate }}</a>
     </li>
   </ul>
   
