@@ -1,0 +1,23 @@
+{
+    "HOME": {
+      "TITLE": "Hello Angular with ngx-translate!",
+      "SELECT": "Change language"
+    },
+    "HEADER":{
+        "HEADER_SEARCH_BOOKS" : "Search Books",
+        "HEADER_USER_LIST" : "User List",
+        "HEADER_MY_BOOK_LIST" : "My Book list",
+        "HEADER_RETIREMENT_CALCULATOR" : "Retirement Calculator",
+        "HEADER_RECORD_LIST" : "Record List",
+        "HEADER_JOB" : "Job",
+        "HEADER_CRISIS" : "crisis",
+        "HEADER_JOB_LIST" : "Job List",
+        "HEADER_LOGOUT" : "logout",
+        "HEADER_LOGIN":"Login",
+        "HEADER_SIGN_UP":"SignUp",
+        "HEADER_MY_MESSAGES":"My Messages"
+    }
+
+
+  }
+  

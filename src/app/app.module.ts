@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { MaterialModule } from './modules/material/material.module';
 import { AppROutingModule } from './app.routing.module'
 import { AppComponent } from './app.component';
@@ -25,6 +25,14 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { DropdownComponent } from './books/dropdown/dropdown.component';
 import { SearchPreviewComponent } from './books/search-preview/search-preview.component';
+import { WindowRefService } from './service/window-ref.service';
+ import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
+ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+ // AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 
 @NgModule({
   declarations: [
@@ -58,10 +66,17 @@ import { SearchPreviewComponent } from './books/search-preview/search-preview.co
     MaterialModule,
     MatSidenavModule,
   AppROutingModule,
+  TranslateModule.forRoot({
+    loader: {
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient]
+    }
+  })
 
   ],
   entryComponents: [DialogComponent,RecordsDialogComponent,ConfirmationDialogComponent],
-  providers: [],
+  providers: [WindowRefService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
