@@ -1,19 +1,21 @@
-
 <app-header></app-header>
-<div>
-  <h2>{{ 'HOME.TITLE' | translate }}</h2>
-  <label>
-    {{ 'HOME.SELECT' | translate }}
-    <select #langSelect (change)="translate.use(langSelect.value)">
-      <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
-    </select>
-  </label>
+<div class="app-layout">
+  <h2 [style.font-weight]="'700'" [style.text-align]="'center'">{{ "HOME.TITLE" | translate }}</h2>
+  <mat-form-field>
+    <mat-label>{{ "HOME.SELECT" | translate }}</mat-label>
+    <mat-select
+      #langSelect
+      (selectionChange)="languageSelectionChange(langSelect.value)"
+    >
+      <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">
+        {{ lang }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
 
 <main>
   <!-- <app-post-create></app-post-create>
   <app-post-list></app-post-list> -->
   <router-outlet></router-outlet>
-
-  
 </main>

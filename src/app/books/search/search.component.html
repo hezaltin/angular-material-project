@@ -1,59 +1,80 @@
-
- 
- <div [formGroup]="searchForm" class="search-bar" >
+<div [formGroup]="searchForm" class="search-bar">
   <button mat-icon-button>
     <mat-icon aria-label="Search database">search</mat-icon>
   </button>
   <mat-form-field class="search-box" appearance="legacy" floatLabel="never">
-    <input #input matInput placeholder="Search Books" autocomplete="off" formControlName="searchInput">
+    <input
+      #input
+      matInput
+      placeholder="Search Books"
+      autocomplete="off"
+      formControlName="searchInput"
+    />
   </mat-form-field>
   <button mat-icon-button (click)="closeSearchBar()">
     <mat-icon aria-label="Cancel search">close</mat-icon>
   </button>
 </div>
-<h4>Basic mat-select</h4>
-<mat-form-field>
-  <mat-label>Moment Time Zone Names</mat-label>
-  <mat-select (selectionChange)="selectedZone($event)">
-    <mat-option *ngFor="let timezone of momentTimzoneNames" [value]="timezone.timezone">
-      {{timezone.displayName}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-{{format}}
-<mat-form-field>
-  <input matInput [matDatepicker]="dp" placeholder="Moment.js datepicker" [formControl]="date" (dateChange)="formatFunc($event)">
-  <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-  <mat-datepicker #dp></mat-datepicker>
-</mat-form-field>
-  
 
- 
- <mat-card *ngFor="let book of books | async" class="mat-card-margin">
-    <mat-card-title-group>
-      <a [href]="book.volumeInfo.previewLink" target="_blank">
-      <img mat-card-sm-image  src="{{book.volumeInfo.imageLinks.thumbnail}}"/>
-      </a>
-      <mat-card-title>{{ book.volumeInfo.title }}</mat-card-title>
-      <mat-card-subtitle *ngIf="book.volumeInfo.publisher">{{ book.volumeInfo.publisher}}</mat-card-subtitle>
-    </mat-card-title-group>
-    <mat-card-content>
-      <p *ngIf="book.volumeInfo.description">{{ book.volumeInfo.description }}</p>
-      <div *ngIf="book.saleInfo.listPrice">
-        <span>Price:</span>
-        <span>{{ book.saleInfo.listPrice?.amount | currency}}</span>
-      </div>
-    </mat-card-content>
-    <button class="button-margin" *ngIf="book.saleInfo.listPrice && isAddtoCart(book) ; else loggedOut" mat-raised-button color="primary" (click)="addTocart($event,book)">
-        Add To Cart
+<div>
+  <h4>Basic mat-select</h4>
+  <mat-form-field>
+    <mat-label>Moment Time Zone Names</mat-label>
+    <mat-select (selectionChange)="selectedZone($event)">
+      <mat-option
+        *ngFor="let timezone of momentTimzoneNames"
+        [value]="timezone.timezone"
+      >
+        {{ timezone.displayName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  {{ format }}
+  <mat-form-field>
+    <input
+      matInput
+      [matDatepicker]="dp"
+      placeholder="Moment.js datepicker"
+      [formControl]="date"
+      (dateChange)="formatFunc($event)"
+    />
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<mat-card *ngFor="let book of books | async" class="mat-card-margin">
+  <mat-card-title-group>
+    <a [href]="book.volumeInfo.previewLink" target="_blank">
+      <img mat-card-sm-image src="{{ book.volumeInfo.imageLinks.thumbnail }}" />
+    </a>
+    <mat-card-title>{{ book.volumeInfo.title }}</mat-card-title>
+    <mat-card-subtitle *ngIf="book.volumeInfo.publisher">{{
+      book.volumeInfo.publisher
+    }}</mat-card-subtitle>
+  </mat-card-title-group>
+  <mat-card-content>
+    <p *ngIf="book.volumeInfo.description">{{ book.volumeInfo.description }}</p>
+    <div *ngIf="book.saleInfo.listPrice">
+      <span>Price:</span>
+      <span>{{ book.saleInfo.listPrice?.amount | currency }}</span>
+    </div>
+  </mat-card-content>
+  <button
+    class="button-margin"
+    *ngIf="book.saleInfo.listPric; else loggedOut"
+    mat-raised-button
+    color="primary"
+    (click)="addTocart($event, book)"
+  >
+    Add To Cart
+  </button>
+  <ng-template #loggedOut>
+    <button class="button-margin" mat-raised-button color="primary" disabled>
+      Add To Cart
     </button>
-      <ng-template #loggedOut>
-          <button class="button-margin"  mat-raised-button color="primary" disabled>
-              Add To Cart
-          </button>
-      </ng-template>
-   
-    <mat-card-footer> 
+  </ng-template>
 
-    </mat-card-footer>
-  </mat-card>
+  <mat-card-footer> </mat-card-footer>
+</mat-card>
+

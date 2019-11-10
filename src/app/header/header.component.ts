@@ -18,9 +18,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     const getLocaldb = JSON.parse(localStorage.getItem('logindetails'));
     if (getLocaldb) {
-      this.router.navigate(['/search']);
+      this.router.navigate(['/retirement']);
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/retirement']);
     }
 
       this.appService.isSearchAvailable.subscribe(search => {
