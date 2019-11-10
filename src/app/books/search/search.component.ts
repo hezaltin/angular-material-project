@@ -36,7 +36,6 @@ export class SearchComponent implements OnInit {
   constructor(private appService: AppserviceService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    console.log(moment.tz.names());
     this.momentTimzoneNames = UNIVERSAL_TIME_ZONE
    // this.momentTimzoneNames = moment.tz.names();
     this.appService.setSeatchOn(true);
@@ -61,35 +60,24 @@ export class SearchComponent implements OnInit {
     const naes= UNIVERSAL_TIME_ZONE.map((item,index)=>{
       return item['zoneutc'] = `${moment(daylightSavingDate).tz(item.timezone).format('Z')}--${item.displayName}`
     })
-    console.log(naes)
   }
 
   formatFunc($event){
-    console.log($event)
     this.nativeChanged = moment($event.value);
   }
 
   selectedZone(zoneEvent){
     let setvalues  = moment(this.nativeChanged)
-    console.log(new Date(setvalues))
     let names = moment.tz(setvalues, moment.tz.guess());
-    console.log('names==>',names);
 
     var input = moment.tz(setvalues,this.previousValue).format('YYYY-MM-DDThh:mm:ss')
     var fmt   = "YYYY-MM-DDThh:mm:ss";
     //let addedTimeZone = moment(setvalues).tz(zoneEvent.value).format(fmt);
     let addedTimeZone = names.clone().tz(zoneEvent.value)
    let name =  moment.tz(input, fmt, zoneEvent.value).utc().format(fmt);
-   console.log('UtC TimeZone==>',name)
-   console.log('addedTimeZone==>',addedTimeZone)
-
-   console.log(moment(addedTimeZone).hour())
-   console.log(moment(addedTimeZone).minute())
-   console.log(moment(addedTimeZone).seconds())
     this.format = addedTimeZone
    ;
-    console.log(moment([moment(addedTimeZone).year(),moment(addedTimeZone).month(),moment(addedTimeZone).date()]))
-   console.log(new Date (moment(addedTimeZone).local()))
+
    this.date.setValue(moment([moment(addedTimeZone).year(),moment(addedTimeZone).month(),moment(addedTimeZone).date()]));
    
    this.previousValue = zoneEvent.value;

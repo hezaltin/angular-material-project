@@ -65,4 +65,9 @@ export class AppComponent {
     const browserLang = this.translate.getBrowserLang();
     this.translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
   }
+
+  languageSelectionChange(event){
+    console.log(event)
+    this.translate.use(event)
+  }
 }

@@ -11,4 +11,9 @@ table {
     width: 80%;
     margin: 1rem auto;
   }
+
+  .app-layout{
+    display: flex;
+    justify-content: space-around;
+  }
   

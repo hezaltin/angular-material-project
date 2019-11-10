@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
       let setLocalDb= getLocalDb? [form.value,...getLocalDb] : [form.value];
       this.appService.setLoggedUser(form.value);
     localStorage.setItem('logindetails',JSON.stringify(setLocalDb))
-    this.router.navigate(['/search']);
+    this.router.navigate(['/retirement']);
   }
 
 }

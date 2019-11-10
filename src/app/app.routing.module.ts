@@ -11,6 +11,7 @@ import { RetirementCalculatorComponent } from './books/retirement-calculator/ret
 import { RecordsListComponent } from './books/records-list/records-list.component';
 import { JobsComponent } from './books/jobs/jobs.component';
 import { JobListComponent } from './books/job-list/job-list.component';
+import { CrisisComponent } from './heroes/views/crisis/crisis.component';
 
 const routes:Routes = [
     {path: 'name' , component:LoginComponent},
@@ -24,6 +25,7 @@ const routes:Routes = [
      {path:'retirement', component: RetirementCalculatorComponent},
      {path:'records', component: RecordsListComponent},
      {path:'job', component: JobsComponent},
+    // {path:'crisis-center', component: CrisisComponent},
      {path:'joblist', component: JobListComponent},
      {
         path: '',

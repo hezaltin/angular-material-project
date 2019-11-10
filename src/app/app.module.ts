@@ -28,6 +28,7 @@ import { SearchPreviewComponent } from './books/search-preview/search-preview.co
 import { WindowRefService } from './service/window-ref.service';
  import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
  import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+ import { heroSwitchComponents } from './books/retirement-calculator/hero-switch-component';
 
  // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -51,7 +52,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RecordsDialogComponent,
     ConfirmationDialogComponent,
     DropdownComponent,
-    SearchPreviewComponent
+    SearchPreviewComponent,
+    heroSwitchComponents
     
   ],
   imports: [

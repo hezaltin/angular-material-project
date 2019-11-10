@@ -21,7 +21,7 @@ const heroesRoutes: Routes = [
             },
             
             {
-                path: 'crisis',
+                path: 'crisis-center',
                 component: CrisisComponent,
             }
 

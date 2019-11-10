@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.appService.setLoggedUser(getVerifiedUser.loggedInUser);
-    this.router.navigate(['/search']);
+    this.router.navigate(['/retirement']);
   }
 
   verifyUser(getLogindetails, formdetails) {
