@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     if (getLocaldb) {
       this.router.navigate(['/retirement']);
     } else {
-      this.router.navigate(['/retirement']);
+      this.router.navigate(['/']);
     }
 
       this.appService.isSearchAvailable.subscribe(search => {

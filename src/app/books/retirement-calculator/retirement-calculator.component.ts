@@ -14,6 +14,7 @@ export class RetirementCalculatorComponent implements OnInit {
   heroes = heroes;
   hero = this.heroes[0];
   showSad = true;
+  condition=false;
   
   trackById(index: number, hero: Hero): number { return hero.id; }
   constructor(private appService:AppserviceService) {
@@ -21,7 +22,7 @@ export class RetirementCalculatorComponent implements OnInit {
    }
 
   ngOnInit() {
-   
+    this.appService.setSeatchOn(true);
   }
 
 
