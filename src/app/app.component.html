@@ -5,6 +5,7 @@
     <mat-label>{{ "HOME.SELECT" | translate }}</mat-label>
     <mat-select
       #langSelect
+      [(value)]="selectedLanguage"
       (selectionChange)="languageSelectionChange(langSelect.value)"
     >
       <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">

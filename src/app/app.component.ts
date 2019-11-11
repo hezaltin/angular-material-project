@@ -31,6 +31,7 @@ declare var gtag;
 })
 export class AppComponent {
   title = "app";
+  selectedLanguage:string
   constructor(
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
@@ -61,7 +62,7 @@ export class AppComponent {
     this.appService.userList.subscribe(next => next);
     this.translate.addLangs(['en', 'fr']);
     this.translate.setDefaultLang('en');
-
+    this.selectedLanguage = 'en'
     const browserLang = this.translate.getBrowserLang();
     this.translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
   }
