@@ -6,3 +6,123 @@ table {
     font-size: 14px;
     width: 100%;
   }
+
+  .field-state{
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+  }
+
+  .example-tree-invisible {
+    display: none;
+  }
+  
+  .example-tree ul,
+  .example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+  }
+
+.mat-tree-node{
+  min-height: 30px;
+}
+
+
+  /* .example-list {
+    width: 300px;
+    height:200px;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,.1);
+    padding: 5px 10px;
+    z-index: 1000;
+    left: 0;
+    height: auto!important;
+  } */
+
+  .example-list{
+    max-height: 10em;
+    overflow-y: auto;
+  }
+
+  .form-field{
+    display: flex;
+  }
+  
+  .example-list > li {
+    list-style-type: none;
+    border-bottom: solid 1px #8b8b8b;
+    padding: 8px 0;
+  }
+  
+  .example-list > li:last-child {
+    border-bottom: none;
+  }
+
+  .tree-value{
+    cursor: pointer;
+  }
+  .tree-value:hover{
+    background: #fffae7;
+  }
+  ul .mat-tree-node{
+    cursor: pointer;
+  }
+  ul .mat-tree-node:hover{
+    background: #fffae7;
+  }
+
+
+  .popover {
+    background-color: #fff;
+    padding: 1rem;
+    font-size: 14px;
+    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .name{
+  cursor: pointer;
+  /* display: inline-block; */
+  }
+  
+  .example-list {
+    height: 100%;
+    overflow-x: hidden;
+    width:300px;
+  }
+  .example-list::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    background-color: #dcdcdc00;
+    width: 4px;
+  }
+
+  .example-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    width: 4px;
+  }
+  .example-list::-webkit-scrollbar {
+    width: 7px;
+    background-color: transparent;
+    height: 7px;
+  }
+  .new-account{
+    display: flex;
+  }
+
+  .new-account-icon{
+    margin-right: 1rem;
+  }
+  .action-items{
+    display: flex;
+  }
+  .action-icons{
+    font-size: 1rem;
+  }
+  .node-name{
+    flex-grow: 2;
+  }

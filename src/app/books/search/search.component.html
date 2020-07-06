@@ -23,7 +23,7 @@
     <mat-select (selectionChange)="selectedZone($event)">
       <mat-option
         *ngFor="let timezone of momentTimzoneNames"
-        [value]="timezone.timezone"
+        [value]="timezone"
       >
         {{ timezone.displayName }}
       </mat-option>
