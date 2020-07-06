@@ -9,9 +9,9 @@ export class DropdownComponent implements OnInit {
   @Input() dropdownList:any;
   @Input() dropdownLabel:any
   @Input() selectedTargetView:any
-  @ViewChild('list',{static:false}) list: ElementRef;
-  @ViewChild('dropdownSelect',{static:false}) dropdownSelect : ElementRef;
-  @ViewChild('dropdownListNodes',{static:false}) dropdownListNodes : ElementRef;
+  @ViewChild('list') list: ElementRef;
+  @ViewChild('dropdownSelect') dropdownSelect : ElementRef;
+  @ViewChild('dropdownListNodes') dropdownListNodes : ElementRef;
   @HostListener("document:click", ["$event"])
   onclick(elemRef) {
     if (!this.dropdownSelect.nativeElement.contains(elemRef.target) ) {

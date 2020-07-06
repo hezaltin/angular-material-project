@@ -15,7 +15,7 @@ export class JobListComponent implements OnInit {
 
   displayedColumns: string[] = [ 'batchType', 'email', 'jobName','jobType','timeStamp','action'];
   dataSource: MatTableDataSource<any>;
-  @ViewChild(MatSort,{static:false}) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
   jobListSubscription = new Subscription();
   constructor(public dialog: MatDialog,private appService:AppserviceService) { }
 

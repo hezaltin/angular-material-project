@@ -1,17 +1,97 @@
-<mat-form-field>
-  <mat-label>Select Option</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let food of dropdownListData" [value]="food.value">
-      {{food.viewValue}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<div  >
+
+
+  <a class="button is-primary" (click)="show(tpl, origin)" #origin>Popover</a>
+
+  <ng-template #tpl let-close="close">
+    And here's some amazing content. It's very engaging. Right?
+    <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+      <a class="button is-danger is-small" (click)="close({id: 2})">Close</a>
+    </div>
+  </ng-template>
+
+
+<div class="field-state">
+  <mat-form-field>
+    <mat-label>Select Option</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let food of dropdownListData" [value]="food.value">
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+
+</div>
+
+<!-- <button (click)="isOpen = !isOpen" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+  {{isOpen ? "Close" : "Open"}}
+</button> -->
+<div>
+  <mat-form-field >
+    <mat-label>Select Account</mat-label>
+    <div class="form-field name" (click)="show(tpl1, origin1)" #origin1>
+      <input matInput class="name"  [(ngModel)]="node" [value]="node" readonly/>
+    <mat-icon>arrow_drop_down</mat-icon>
+    </div>
+    
+  </mat-form-field>
+</div>
+
+
+
+<ng-template #tpl1>
+  <div class="example-list">
+    <div class="new-account">
+      <mat-icon class="new-account-icon">account_circle</mat-icon>
+      <div><span>Add New Account</span></div>
+    </div>
+    <div>
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+        <!-- This is the tree node template for leaf nodes -->
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle >
+          <li class="mat-tree-node">
+            <!-- use a disabled button to provide padding for tree leaf -->
+            <button mat-icon-button disabled></button>
+            <div class="node-name" (click)="treeClick()">{{node.name}}</div>
+            <!-- <div *ngIf="node.name!==''" class="action-items">
+              <button mat-icon-button (click)="addNewItem(node)"><mat-icon class="action-icons">edit</mat-icon></button>
+              <button mat-icon-button (click)="addNewItem(node)"><mat-icon  class="action-icons">delete</mat-icon></button>
+            </div> -->
+          </li>
+        </mat-tree-node>
+        <!-- This is the tree node template for expandable nodes -->
+        <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+          <li>
+            <div class="mat-tree-node tree-value" >
+              <button mat-icon-button matTreeNodeToggle
+                      [attr.aria-label]="'toggle ' + node.name">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+              </button>
+              {{node.name}}
+             
+            </div>
+            <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)" >
+              <ng-container matTreeNodeOutlet>
+              </ng-container>
+            </ul>
+          </li>
+        </mat-nested-tree-node>
+      </mat-tree>
+    </div>
+    
+  </div>
+</ng-template>
+
+
 
 <mat-form-field class="filter">
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
   <ng-container matColumnDef="fId">
     <th mat-header-cell *matHeaderCellDef  mat-sort-header> F-ID </th>
@@ -41,9 +121,7 @@
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef> Action </th>
     <td mat-cell *matCellDef="let element"  (click)="$event.stopPropagation()"> 
-      <!-- <button mat-button (click)="onDelete(element.chemId)">
-        <mat-icon>delete</mat-icon> 
-      </button> -->
+      
       <button mat-button (click)="onEditDialog({index:element.index,quantity:element.quantity,materialName:element.materialName})">
         <mat-icon>edit</mat-icon> 
       </button>
@@ -52,4 +130,6 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+</table> -->
+
+</div>

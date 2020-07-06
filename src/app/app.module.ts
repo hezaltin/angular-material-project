@@ -30,6 +30,7 @@ import { WindowRefService } from './service/window-ref.service';
  import {TranslateHttpLoader} from '@ngx-translate/http-loader';
  import { heroSwitchComponents } from './books/retirement-calculator/hero-switch-component';
  import { UnlessDirective }    from './books/retirement-calculator/unless.diective';
+import { TreeOverlayComponent } from './shared/tree-overlay/tree-overlay.component';
 
  // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DialogComponent,
     RecordsDialogComponent,
     ConfirmationDialogComponent,
+    TreeOverlayComponent,
     DropdownComponent,
     SearchPreviewComponent,
     heroSwitchComponents,
@@ -79,7 +81,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   })
 
   ],
-  entryComponents: [DialogComponent,RecordsDialogComponent,ConfirmationDialogComponent],
+  entryComponents: [DialogComponent,RecordsDialogComponent,ConfirmationDialogComponent,TreeOverlayComponent],
   providers: [WindowRefService],
   bootstrap: [AppComponent],
 })

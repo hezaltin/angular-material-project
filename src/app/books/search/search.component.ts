@@ -3,9 +3,10 @@ import {AppserviceService} from '../../service/appservice.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import * as moment from 'moment-timezone';
-import {timeZoneList,UNIVERSAL_TIME_ZONE} from './search-timezone.config'
+import {timeZoneList,UNIVERSAL_TIME_ZONE,UNIVERSAL_TIME_ZONE_ERTS,WOA_UNIVERSAL_TIME_ZONE} from './search-timezone.config'
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { findOneIana, findWindows } from "windows-iana";
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -36,7 +37,7 @@ export class SearchComponent implements OnInit {
   constructor(private appService: AppserviceService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.momentTimzoneNames = UNIVERSAL_TIME_ZONE
+    this.momentTimzoneNames = WOA_UNIVERSAL_TIME_ZONE;
    // this.momentTimzoneNames = moment.tz.names();
     this.appService.setSeatchOn(true);
     this.books = this.appService.searchBooks;
@@ -67,20 +68,27 @@ export class SearchComponent implements OnInit {
   }
 
   selectedZone(zoneEvent){
+    console.log(zoneEvent);
     let setvalues  = moment(this.nativeChanged)
     let names = moment.tz(setvalues, moment.tz.guess());
+
+    const result = findOneIana(zoneEvent.value.standardName);
+console.log(result);
+
+const resultWin = findWindows(result);
+console.log(resultWin); // Eastern Standard Time
 
     var input = moment.tz(setvalues,this.previousValue).format('YYYY-MM-DDThh:mm:ss')
     var fmt   = "YYYY-MM-DDThh:mm:ss";
     //let addedTimeZone = moment(setvalues).tz(zoneEvent.value).format(fmt);
-    let addedTimeZone = names.clone().tz(zoneEvent.value)
-   let name =  moment.tz(input, fmt, zoneEvent.value).utc().format(fmt);
+    let addedTimeZone = names.clone().tz(zoneEvent.value.timezone)
+   let name =  moment.tz(input, fmt, zoneEvent.value.timezone).utc().format(fmt);
     this.format = addedTimeZone
    ;
 
    this.date.setValue(moment([moment(addedTimeZone).year(),moment(addedTimeZone).month(),moment(addedTimeZone).date()]));
    
-   this.previousValue = zoneEvent.value;
+   this.previousValue = zoneEvent.value.timezone;
    this.prevTime = {
      hour: moment(addedTimeZone).hour(),
      minute:moment(addedTimeZone).minute(),
