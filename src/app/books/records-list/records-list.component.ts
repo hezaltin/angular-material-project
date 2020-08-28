@@ -8,6 +8,7 @@ import {data} from './record-list.config';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 import { OverlayTree } from 'src/app/service/overlayservice.service';
+import { timezoneList, getTimeZoneLocale, InputDA } from './record-list.locale';
 
 
 const RECORD_DATA = [ {fId: 1, chemId: '2', quantity: 3.21, materialName: 'PAPI 27', type: 'polyol', index: 0},
@@ -81,6 +82,7 @@ export class RecordsListComponent implements OnInit {
         // this.dataSource = new MatTableDataSource(list);
         // this.dataSource.sort = this.sort;
     });
+    console.log(this.getLatestLocale(InputDA))
   }
 
   addNewItem(node) {
@@ -136,8 +138,8 @@ export class RecordsListComponent implements OnInit {
 
     this.overlayRef = this.overlayService.open<{ skills: number[] }>({
       origin,
-      content,
-      //content: 'Hello world!',
+     // content,
+      content: 'Hello world!',
       // content: InsidePopoverComponent,
       data: {
         skills: [1, 2, 3]
@@ -151,6 +153,56 @@ export class RecordsListComponent implements OnInit {
   treeClick(){
     console.log('data')
     this.overlayRef.close()
+  }
+//Navie soln Multiple pointer
+  setTheTranslateKeysPointers(baseLocale,list){
+    let start = 0;
+    let end = 0;
+    const getEntries = Object.entries(baseLocale);
+    //console.log(getEntries)
+    while(start<list.length){
+      if(list[start]['displayName']===getEntries[end][1]){
+        list[start]['translate'] = getEntries[end][0];
+        start++
+        end = 0;
+      }
+      else if(end=== list.length-1){
+        start++
+        end = 0;
+      }
+      else{
+        end++;
+      }
+    }
+    console.log(list)
+  }
+
+  //O(N) => O(3N) => O(N)
+  setTheTranslateKeyFrequency(baseLocale,list){
+    let baseList = {};
+    let listValue = [];
+    const getEntries:any = Object.entries(baseLocale);
+    //console.log(getEntries)
+    for(const forValues of getEntries ){
+      baseList[forValues[1]] = forValues[0]
+    }
+    for(const timezoneKey of list){
+      listValue.push({...timezoneKey,translate:baseList[timezoneKey['displayName']]}) 
+    }
+   // console.log(list)
+   //console.log(listValue.filter(name=>!name.translate));
+   return listValue;
+   
+  }
+
+  getLatestLocale(localeInput){
+    let modifiedObject = {};
+    const gettranslatedBaseObject = this.setTheTranslateKeyFrequency(getTimeZoneLocale,timezoneList);
+    for(const getObj of gettranslatedBaseObject){
+      modifiedObject[getObj['displayName']] = localeInput[getObj['translate']];
+    }
+    console.log(JSON.stringify(modifiedObject))
+    return modifiedObject;
   }
 
 
